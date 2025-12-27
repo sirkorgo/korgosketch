@@ -3,15 +3,6 @@ export default class CanvasServer {
     this.room = room;
   }
 
-  onRequest(req) {
-    return new Response(null, {
-      headers: {
-        "X-Frame-Options": "ALLOWALL",
-        "Content-Security-Policy": "frame-ancestors *",
-      },
-    });
-  }
-
   async onConnect(connection) {
     const strokes = (await this.room.storage.get("strokes")) || [];
     connection.send(JSON.stringify({ type: "init", strokes }));
