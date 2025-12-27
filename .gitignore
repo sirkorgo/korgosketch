@@ -113,7 +113,7 @@ out
 # Nuxt.js build / generate output
 
 .nuxt
-dist
+
 
 # Gatsby files
 
@@ -169,3 +169,4 @@ dist
 
 .partykit
 .DS_Store
+wrangler.toml

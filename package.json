@@ -1,16 +1,29 @@
 {
   "name": "korgosketch",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "partykit dev --live",
-    "deploy": "partykit deploy"
-  },
+  "version": "1.0.0",
+  "description": "a quick little multiplayer canvas i made",
+  "main": "index.js",
   "dependencies": {
-    "partysocket": "^1.0.2"
+    "event-target-polyfill": "^0.0.4",
+    "nanoid": "^5.1.6",
+    "partyserver": "^0.1.0",
+    "partysocket": "^1.1.10",
+    "typescript": "^5.9.3"
   },
-  "devDependencies": {
-    "partykit": "^0.0.110",
-    "typescript": "^5.5.4"
-  }
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sirkorgo/korgosketch.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/sirkorgo/korgosketch/issues"
+  },
+  "homepage": "https://github.com/sirkorgo/korgosketch#readme"
 }
