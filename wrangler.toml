@@ -1,0 +1,4 @@
+name = "korgosketch"
+main = "server.js"
+compatibility_date = "2025-12-27"
+workers_dev = true
