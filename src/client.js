@@ -1,7 +1,7 @@
 import PartySocket from "partysocket";
 
 const socket = new PartySocket({
-  host: window.location.host,
+  host: "korgosketch.sirkorgo.partykit.dev",
   room: "canvas",
 });
 
