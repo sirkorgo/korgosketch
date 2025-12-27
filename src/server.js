@@ -1,6 +1,28 @@
+const HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
+};
+
 export default class CanvasServer {
+  static async onBeforeRequest(req) {
+    if (req.method === "OPTIONS") {
+      return new Response(null, { headers: HEADERS });
+    }
+    return req;
+  }
+
   constructor(room) {
     this.room = room;
+  }
+
+  async onRequest(req) {
+    return new Response(null, {
+      headers: {
+        ...HEADERS,
+        "Content-Security-Policy": "frame-ancestors *",
+      },
+    });
   }
 
   async onConnect(connection) {
