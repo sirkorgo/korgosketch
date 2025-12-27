@@ -1,50 +1,37 @@
-/* eslint-env browser */
-
-// @ts-check
-// Optional JS type checking, powered by TypeScript.
-/** @typedef {import("partykit/server").Room} Room */
-/** @typedef {import("partykit/server").Server} Server */
-/** @typedef {import("partykit/server").Connection} Connection */
-/** @typedef {import("partykit/server").ConnectionContext} ConnectionContext */
-
-/**
- * @implements {Server}
- */
-class PartyServer {
-  /**
-   * @param {Room} room
-   */
+export default class CanvasServer {
   constructor(room) {
-    /** @type {Room} */
     this.room = room;
   }
 
-  /**
-   * @param {Connection} conn - The connection object.
-   * @param {ConnectionContext} ctx - The context object.
-   */
-  onConnect(conn, ctx) {
-    // A websocket just connected!
-    console.log(
-      `Connected:
-  id: ${conn.id}
-  room: ${this.room.id}
-  url: ${new URL(ctx.request.url).pathname}`
-    );
-
-    // Send a message to the connection
-    conn.send("hello from server");
+  async onConnect(connection) {
+    const strokes = (await this.room.storage.get("strokes")) || [];
+    connection.send(JSON.stringify({ type: "init", strokes }));
+    this.broadcast({
+      type: "users",
+      count: [...this.room.getConnections()].length,
+    });
   }
 
-  /**
-   * @param {string} message
-   * @param {Connection} sender
-   */
-  onMessage(message, sender) {
-    console.log(`connection ${sender.id} sent message: ${message}`);
-    // Broadcast the received message to all other connections in the room except the sender
-    this.room.broadcast(`${sender.id}: ${message}`, [sender.id]);
+  async onMessage(message, sender) {
+    const stroke = JSON.parse(message);
+    const strokes = (await this.room.storage.get("strokes")) || [];
+    strokes.push(stroke);
+    await this.room.storage.put("strokes", strokes);
+    this.room.broadcast(message, [sender.id]);
+  }
+
+  async onClose(connection) {
+    const connections = [...this.room.getConnections()];
+
+    if (connections.length === 0) {
+      await this.room.storage.put("strokes", []);
+    }
+
+    this.broadcast({ type: "users", count: connections.length });
+  }
+
+  broadcast(data) {
+    const message = typeof data === "string" ? data : JSON.stringify(data);
+    this.room.broadcast(message);
   }
 }
-
-export default PartyServer;
