@@ -1,6 +1,7 @@
 import PartySocket from "partysocket";
 
 const socket = new PartySocket({
+  host: window.location.host,
   room: "canvas",
 });
 
