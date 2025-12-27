@@ -3,6 +3,15 @@ export default class CanvasServer {
     this.room = room;
   }
 
+  onRequest(req) {
+    return new Response(null, {
+      headers: {
+        "X-Frame-Options": "ALLOWALL",
+        "Content-Security-Policy": "frame-ancestors *",
+      },
+    });
+  }
+
   async onConnect(connection) {
     const strokes = (await this.room.storage.get("strokes")) || [];
     connection.send(JSON.stringify({ type: "init", strokes }));
@@ -22,11 +31,9 @@ export default class CanvasServer {
 
   async onClose(connection) {
     const connections = [...this.room.getConnections()];
-
     if (connections.length === 0) {
       await this.room.storage.put("strokes", []);
     }
-
     this.broadcast({ type: "users", count: connections.length });
   }
 
