@@ -17,12 +17,7 @@ export default class CanvasServer {
   }
 
   async onRequest(req) {
-    return new Response(null, {
-      headers: {
-        ...HEADERS,
-        "Content-Security-Policy": "frame-ancestors *",
-      },
-    });
+    return new Response(null, { headers: HEADERS });
   }
 
   async onConnect(connection) {

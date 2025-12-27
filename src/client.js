@@ -26,7 +26,7 @@ function drawStroke(stroke) {
   const ctx = canvas.getContext("2d");
 
   ctx.strokeStyle = stroke.color;
-  ctx.lineWidth = 5;
+  ctx.lineWidth = 2;
   ctx.lineCap = "round";
   ctx.beginPath();
 

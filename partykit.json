@@ -5,6 +5,7 @@
   "compatibilityDate": "2025-12-26",
   "serve": {
     "path": "public",
-    "build": "src/client.js"
+    "build": "src/client.js",
+    "cors": "true"
   }
 }
