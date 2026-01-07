@@ -7,7 +7,7 @@ A multiplayer art canvas powered by PartyKit.
 
 ### Demos
 **PartyKit**: https://korgosketch.sirkorgo.partykit.dev <br>
-**sirkorgo.com**: ~~[https://www.sirkorgo.com](https://www.sirkorgo.com/chat)~~ (Currently unavailable)
+~~**sirkorgo.com**: [https://www.sirkorgo.com](https://www.sirkorgo.com/chat)~~ (Currently unavailable)
 
 ### Setup Instructions
 **Option 1: Using only PartyKit Domain**
