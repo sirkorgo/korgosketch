@@ -39,4 +39,5 @@ Example:
 ### Planned Features
 - Undo Button
 - Eraser Tool
+- Mobile support
 ... and more!
