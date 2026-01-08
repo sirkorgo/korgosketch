@@ -35,3 +35,8 @@ Example:
 <iframe style="border: 0;" width="720px" height="750px" src="/path/to/client.html"></iframe>
 ```
 > I recommend using 720x750 or bigger for the iframe size to prevent any issues.
+
+### Planned Features
+- Undo Button
+- Eraser Tool
+... and more!
