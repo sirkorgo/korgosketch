@@ -40,4 +40,5 @@ Example:
 - Undo Button
 - Eraser Tool
 - Mobile support
+- Infinite Canvas
 ... and more!
